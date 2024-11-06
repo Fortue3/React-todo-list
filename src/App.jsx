@@ -1,10 +1,20 @@
+import {useState} from "react"
 export default function App(){
+  const [newItem, setNewItem] = useState("")
+  const [todos, setTodos]= useState([])
+
+  function handleSubmit(e) {
+    e.preventDefault()
+  }
   return (
     <>
-    <form className="new-item-form">
+    <form onSubmit={handleSubmit} className="new-item-form">
       <div className="form-row">
         <label htmlFor="item">New Item</label>
-        <input type="text" id="item"/>
+        <input value={newItem} 
+        onChange={e => setNewItem(e.target.value)}
+        type="text" 
+        id="item"/>
       </div>
       <button className="btn">Add</button>
       </form>
@@ -14,6 +24,13 @@ export default function App(){
           <label>
             <input type="checkbox"/>
             Item 1
+          </label>
+          <button className="btn btn-danger">Delete</button>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox"/>
+            Item 2
           </label>
           <button className="btn btn-danger">Delete</button>
         </li>
